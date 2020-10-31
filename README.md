@@ -85,7 +85,7 @@ Chef Cocô can move in 2 directions and has to get all the ingredients he needs 
   - Goes to gameScreen when Start button is clicked
 - gameScreen
   - Goes to gameoverScreen if ingredients < total recipe ingredients
-      - [Add to MVP] Goes to gameoverScreen if Chef collided with a knife
+      - [Backlog] Goes to gameoverScreen if Chef collided with a knife
   - Goes to winScreen if ingredients = total recipe ingredients
 - gameoverScreen
   - Shows Game Over message and Restart button
