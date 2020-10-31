@@ -62,7 +62,7 @@ Chef Cocô can move in 2 directions and has to get all the ingredients he needs 
 - catchedBonus
 - addIngredient
 
-### 5. Obstacle Constructor
+### 5. Ingredients Constructor
 
 **Properties**
 - canvas
