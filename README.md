@@ -125,6 +125,7 @@ Chef Cocô can move in 2 directions and has to get all the ingredients he needs 
 ## Links
 
 ### Trello
+[Link url](https://trello.com/b/e7xSqMla/project1chefs-tableironhack)
 
 ### Slides
 URls for the project presentation (slides) - Coming soon1 -
