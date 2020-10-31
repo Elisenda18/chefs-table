@@ -1,4 +1,4 @@
-# Chefs-Table
+# Chef's-Table
 Being a chef is not easy, if you miss an ingredient you migth end up with a completely different dish and some angry customers. The object of the game is to help Chef Cocô to get all the ingredients he needs to cook a dish.
 
 # MVP: DOM - CANVAS
@@ -118,7 +118,7 @@ Chef Cocô can move in 2 directions and has to get all the ingredients he needs 
   2. Add game difficulty by setting diferent ingredients speed
   
 
-## Wireframe
+## MVP Wireframe
 
 ![Alt text](https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cc59c887c2a9c4f55be8f2d746ee41db0/projects/Md053a6749e754823bb8b8173fa39a3d81604153255273/pages/d687c4b2f7b34f02999f4d2cb430a3c4/image/d687c4b2f7b34f02999f4d2cb430a3c4.png "Chef's Table Wireframe")
   
