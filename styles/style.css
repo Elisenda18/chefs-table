@@ -1,29 +1,33 @@
 body {
-    padding: 0;
+    padding: 10% 10%;
     text-align: center;
+    display: flex;
   }
   
   .game-intro {
     float: left;
-    padding: 0% 10%;
+    padding: 10% 0%;
   }
 
   .game-intro h1 {
-    font-size: 30px;
+    font-size: 40px;
     font-family: "Georgia";
     font-weight: 700;
   }
   
   .game-intro p {
-    font-size: 18px;
+    font-size: 20px;
     font-family: "Georgia";
+    line-height: 2em;
   }
   
   body button {
-    font-size: 30px;
+    font-size: 22px;
+    font-family: "Georgia";
+    font-weight: 500;
     background-color: #870007;
     color: #fff;
-    padding: 20px 40px;
+    padding: 20px 20px;
     border: 0;
     box-shadow: 0;
     border-radius: 5px;
@@ -32,5 +36,5 @@ body {
   
   #game-board {
       float: left;
-      padding: 20px 0px;
+      padding: 5% 5%;
   }

@@ -1,0 +1,14 @@
+"use strict"
+
+class GameBoard {
+    constructor(canvas) {
+        this.canvas = document.querySelector("canvas");
+        this.ctx = canvas.getContext("2d");
+    }
+
+    draw() {
+        const img = new Image();
+        img.src = "./images/gameboard.png" ;
+        this.ctx.drawImage(img, 0, 0, 700, 500);
+    }
+}
