@@ -8,7 +8,7 @@ class GameBoard {
 
     draw() {
         const img = new Image();
-        img.src = "./images/gameboard.png" ;
-        this.ctx.drawImage(img, 0, 0, 700, 500);
+        img.src = "./images/gameboard2.png" ;
+        this.ctx.drawImage(img, 0, 0, 600, 800);
     }
 }
