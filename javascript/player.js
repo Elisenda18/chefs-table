@@ -3,7 +3,7 @@
 class Player {
     constructor(canvas, ingredients) {
         this.canvas = document.querySelector("canvas");
-        this.ctx = canvas.getContext("2d");
+        this.ctx = this.canvas.getContext("2d");
         this.size = 200;
         this.x = (this.canvas.width/2) - 60;
         this.y = 600;

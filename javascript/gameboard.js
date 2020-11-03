@@ -3,7 +3,7 @@
 class GameBoard {
     constructor(canvas) {
         this.canvas = document.querySelector("canvas");
-        this.ctx = canvas.getContext("2d");
+        this.ctx = this.canvas.getContext("2d");
     }
 
     draw() {
