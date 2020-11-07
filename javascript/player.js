@@ -5,9 +5,11 @@ class Player extends Component {
     constructor(game, x, y, w, h) {
         super(game, x, y, w, h);
         this.points = 0;
+        this.speed = 2;
+        this.direction = 0;
     }
 
-
+    /*
     move() {
         document.onkeydown = event => {
             const key = event.keyCode;
@@ -38,6 +40,26 @@ class Player extends Component {
           };
 
     }
+    */
+
+    update() {
+        this.x = this.x + this.direction * this.speed;
+    }
+
+    setDirection(direction) {
+        this.direction = direction;
+    }
+
+    checkScreen() {
+        //definir mejor las variables para que el codigo se entienda mejor
+
+        if (this.x - this.size / 2 <= 0) {
+          this.direction = 1;
+        } else if (this.x + this.size / 2 >= this.width) {
+          this.direction = -1;
+        }
+    }
+
 
     catchIngredients(ingredient) {
         const catchRight = this.x + this.size / 2 > ingredient.x - ingredient.size / 2;
@@ -54,5 +76,6 @@ class Player extends Component {
     
     addPoints() {
         this.points++;
+        //falta ir contando los puntos que tiene cada ingrediente
     }
 }

@@ -5,18 +5,21 @@ class Ingredient extends Component {
         super(game);
         this.game = game;
         this.x = Math.floor(Math.random()* 540 +30);
-        this.y = 100;
+        this.y = 0;
         this.width = 100;
         this.height = 100;
         this.ingredients = ingredients;
         this.img = ingredients.img;
         this.name = ingredients.name;
         this.points = ingredients.points;
+        this.speed = 3;
+        this.direction = 1;
+
     }
 
     draw() {
         const img = new Image();
-        const currentImg = this.ingredients[Math.random() * ingredients.length].img;
+        const currentImg = this.ingredients[Math.floor(Math.random() * this.ingredients.length)].img;
         img.scr = currentImg;
         this.game.ctx.drawImage(
             img,
@@ -27,9 +30,11 @@ class Ingredient extends Component {
         );
     }
 
-    move() {
-        if (Math.floor(Math.random() * 20) % 3 === 0) {
-            this.y +=5;
-        }
+    update() {
+        this.y = this.y + this.direction * this.speed;
+    }
+
+    setDirection(direction) {
+        this.direction = direction;
     }
 }

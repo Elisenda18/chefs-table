@@ -14,6 +14,6 @@ class Component {
         let drawCtx = this.game.ctx;
         this.img.scr = imgSource;
 
-        drawCtx.drawImage(this.img, this.x, this.y, this.width, this.height)
+        drawCtx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 }

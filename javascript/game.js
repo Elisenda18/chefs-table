@@ -1,4 +1,3 @@
-"use strict"
 
 class Game {
     constructor() {
@@ -14,6 +13,8 @@ class Game {
         this.y = undefined;
         this.width = 600;
         this.height = 800;
+        this.isGameOver = false;
+        this.isGameWon = false;
     }
 
     init() {
@@ -22,35 +23,43 @@ class Game {
         this.x = 0;
         this.y = 0;
         this.start();
-        this.createIngredients();
     }
 
     start() {
-        this.drawBackground();
-        this.drawChef();
 
-        setInterval(() => {
-            this.clear();
-            this.drawBackground();
-            this.drawChef();
-            this.chef.move();
-
-            for (let i = 0; i < this.ingredients.length; i++) {
-                this.ingredients[i].move();
-                this.ingredients[i].draw();
-                this.chef.catchIngredients(this.ingredients[i]);
+        const loop = () => {
+            if (Math.random() > 0.99) {
+                this.ingredients.push(new Ingredient(this, ingredients));
             }
-        }, 1000);
+        
+
+            this.checkAllCatchIngredients();
+            this.updateCanvas();
+            this.clearCanvas();
+            this.drawCanvas();
+            if(!this.isGameOver) {
+                window.requestAnimationFrame(loop);
+            }
+         };
+
+         window.requestAnimationFrame(loop);
     }
 
-    createIngredients() {
-        if (Math.floor(Math.random() * 15) % 2 === 0) {
-            this.ingredients.push(new Ingredient(this, ingredients));
-        }
+    updateCanvas() {
+        this.chef.update();
+        this.ingredients.forEach(function (ingredient) {
+                ingredient.update();
+        });
+    }
 
-        setTimeout(() => {
-            this.createIngredients();
-        }, 5000);
+    clearCanvas() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
+    drawCanvas() {
+        this.drawBackground();
+        this.drawChef();
+        this.drawIngredients();
     }
 
     drawBackground() {
@@ -64,10 +73,6 @@ class Game {
         );
     }
 
-    clear() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    }
-
     drawChef() {
         this.chefImage.src= "./images/chef-game-min.png";
         this.ctx.drawImage(
@@ -77,5 +82,35 @@ class Game {
             150,
             150
         );
+    }
+
+    drawIngredients() {
+        this.ingredients.forEach(function (ingredient) {
+            ingredient.draw();
+        });
+    }
+
+    checkAllCatchIngredients() {
+        this.chef.checkScreen();
+        this.ingredients.forEach((ingredient, index) => {
+            if (this.chef.catchIngredients(ingredient)) {
+                this.chef.addPoints();
+                if(this.chef.points === 12) {
+                    this.isGameWon = true;
+                    this.onGameWon();
+                } else {
+                    this.isGameOver = true;
+                    this.onGameOver();
+                };
+            }
+        });
+    }
+
+    gameOverCallback(callback) {
+        this.onGameOver = callback;
+    }
+    
+    gameWonCallback(callback) {
+        this.onWonOver = callback;
     }
 }
