@@ -1,35 +1,25 @@
 
 class Game {
-    constructor() {
-        this.canvas = undefined;
-        this.ctx = undefined;
-        this.chef = new Player();
-        this.chefImage = new Image();
+    constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = this.canvas.getContext("2d");
+        this.player;
         this.ingredients = [];
         this.points = 0;
         this.background = undefined;
         this.backgroundImg = new Image();
-        this.x = undefined;
-        this.y = undefined;
-        this.width = 600;
-        this.height = 800;
         this.isGameOver = false;
         this.isGameWon = false;
     }
 
-    init() {
-        this.canvas = document.getElementById("canvas");
-        this.ctx = canvas.getContext("2d");
-        this.x = 0;
-        this.y = 0;
-        this.start();
-    }
+    startLoop() {
 
-    start() {
+        this.player = new Player(this.canvas, 0);
 
         const loop = () => {
             if (Math.random() > 0.99) {
-                this.ingredients.push(new Ingredient(this, ingredients));
+                const x = Math.random() * this.canvas.width;
+                this.ingredients.push(new Ingredient(this.canvas, x, this.selectRandomIngredient()));
             }
         
 
@@ -45,8 +35,13 @@ class Game {
          window.requestAnimationFrame(loop);
     }
 
+    selectRandomIngredient() {
+        const randomIndex = Math.floor(Math.random()* dataIngredients.length);
+        return dataIngredients[randomIndex];
+    }
+
     updateCanvas() {
-        this.chef.update();
+        this.player.update();
         this.ingredients.forEach(function (ingredient) {
                 ingredient.update();
         });
@@ -57,12 +52,15 @@ class Game {
     }
 
     drawCanvas() {
-        this.drawBackground();
-        this.drawChef();
-        this.drawIngredients();
-    }
+        // Draw player
+        this.player.draw();
 
-    drawBackground() {
+        // Draw Ingredients
+        this.ingredients.forEach(function (ingredient) {
+            ingredient.draw();
+        });
+
+        //Draw background
         this.backgroundImg.src = "./images/gameboard-min.png";
         this.ctx.drawImage(
             this.backgroundImg,
@@ -73,29 +71,12 @@ class Game {
         );
     }
 
-    drawChef() {
-        this.chefImage.src= "./images/chef-game-min.png";
-        this.ctx.drawImage(
-            this.chefImage,
-            250,
-            460,
-            150,
-            150
-        );
-    }
-
-    drawIngredients() {
-        this.ingredients.forEach(function (ingredient) {
-            ingredient.draw();
-        });
-    }
-
     checkAllCatchIngredients() {
-        this.chef.checkScreen();
+        this.player.checkScreen();
         this.ingredients.forEach((ingredient, index) => {
-            if (this.chef.catchIngredients(ingredient)) {
-                this.chef.addPoints();
-                if(this.chef.points === 12) {
+            if (this.player.catchIngredients(ingredient)) {
+                this.player.addPoints();
+                if(this.player.points === 12) {
                     this.isGameWon = true;
                     this.onGameWon();
                 } else {

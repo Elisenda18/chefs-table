@@ -1,13 +1,12 @@
 "use strict"
 
-class Ingredient extends Component {
-    constructor(game, ingredients) {
-        super(game);
-        this.game = game;
-        this.x = Math.floor(Math.random()* 540 +30);
-        this.y = 0;
-        this.width = 100;
-        this.height = 100;
+class Ingredient {
+    constructor(canvas, x, ingredients) {
+        this.x = x;
+        this.y = 20;
+        this.size = 100;
+        this.canvas = canvas;
+        this.ctx = this.canvas.getContext("2d");
         this.ingredients = ingredients;
         this.img = ingredients.img;
         this.name = ingredients.name;
@@ -19,14 +18,13 @@ class Ingredient extends Component {
 
     draw() {
         const img = new Image();
-        const currentImg = this.ingredients[Math.floor(Math.random() * this.ingredients.length)].img;
-        img.scr = currentImg;
-        this.game.ctx.drawImage(
+        img.src = this.img;
+        this.ctx.drawImage(
             img,
             this.x,
             this.y,
-            this.width,
-            this.height
+            this.size,
+            this.size
         );
     }
 
