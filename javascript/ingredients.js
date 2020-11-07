@@ -16,7 +16,7 @@ class Ingredient extends Component {
 
     draw() {
         const img = new Image();
-        const currentImg = this.ingredients.img[Math.random() * ingredients.length];
+        const currentImg = this.ingredients[Math.random() * ingredients.length].img;
         img.scr = currentImg;
         this.game.ctx.drawImage(
             img,
