@@ -1,12 +1,12 @@
-"use strict"
+"use strict";
 
 const main = () => {
     const buildDom = (html) => {
         const main = document.querySelector("main");
-        main.innerHTML = html
+        main.innerHTML = html;
     };
 
-    const buildSplashScreen = () =>{
+    const buildSplashScreen = () => {
         buildDom(`
             <section class="splash-screen">
                 <h1>Chef's Table</h1>
@@ -15,7 +15,7 @@ const main = () => {
             </section>
         `);
         const startButton = document.querySelector("#game");
-        startButton.addEventListener("click",buildGameScreen)
+        startButton.addEventListener("click",buildGameScreen);
     };
 
     const buildGameScreen = () => {
@@ -28,7 +28,7 @@ const main = () => {
             </div>
 
             <div id="game-board">
-              <canvas class="canvas" width="600" height="600" border="1px solid black"></canvas>
+                <canvas id="canvas" width="600" height="600" border="1px solid black"></canvas>
             </div>
          </section> 
             
@@ -37,7 +37,7 @@ const main = () => {
         const width = document.querySelector(".game-screen").offsetWidth;
         const height = document.querySelector(".game-screen").offsetHeight;
 
-        const canvasElement = document.querySelector(".canvas");
+        const canvasElement = document.querySelector("canvas");
         const canvasCtx = canvasElement.getContext("2d");
 
         //Add static background to canvas
@@ -79,9 +79,9 @@ const main = () => {
                 <div class= "pointer"> </div>
             </section>
             
-        `)
+        `);
     const restartButton = document.querySelector("button");
-    restartButton.addEventListener("click",buildGameScreen)
+    restartButton.addEventListener("click",buildGameScreen);
      
     };
 
@@ -94,13 +94,13 @@ const main = () => {
                 <div class= "pointer"> </div>
             </section>
             
-        `)
+        `);
     const restartButton = document.querySelector("button");
-    restartButton.addEventListener("click", buildGameScreen)
+    restartButton.addEventListener("click", buildGameScreen);
     };
 
 
     buildSplashScreen();
-}
+};
 
 window.addEventListener("load", main);

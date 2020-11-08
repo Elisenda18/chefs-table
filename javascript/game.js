@@ -1,3 +1,4 @@
+"use stric";
 
 class Game {
     constructor(canvas) {
