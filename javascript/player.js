@@ -14,6 +14,7 @@ class Player {
 
     update() {
         this.x = this.x + this.direction * this.speed;
+        this.checkScreen();
     }
 
     setDirection(direction) {
@@ -21,8 +22,6 @@ class Player {
     }
 
     checkScreen() {
-        //definir mejor las variables para que el codigo se entienda mejor
-
         if (this.x - this.size / 2 <= 0) {
           this.direction = 1;
         } else if (this.x + this.size / 2 >= this.width) {

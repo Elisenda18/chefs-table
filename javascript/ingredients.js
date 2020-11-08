@@ -11,7 +11,7 @@ class Ingredient {
         this.img = ingredients.img;
         this.name = ingredients.name;
         this.points = ingredients.points;
-        this.speed = 3;
+        this.speed = 1;
         this.direction = 1;
 
     }

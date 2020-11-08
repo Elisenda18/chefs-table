@@ -43,9 +43,7 @@ const main = () => {
         game.gameOverCallback(buildGameOver);
         game.gameWonCallback(buildGameWon);
 
-        console.log("Hola!!")
-
-        game.startLoop()
+        game.startLoop();
 
         const setPlayerDirection = (event) => {
             if (event.code === "ArrowRight") {

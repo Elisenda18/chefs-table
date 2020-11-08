@@ -1,44 +1,47 @@
 body {
     padding: 10% 10%;
     text-align: center;
+  }
+
+.game-screen {
     display: flex;
-  }
+}
   
-  .game-intro {
-    float: left;
-    padding: 10% 0%;
-  }
+.game-intro {
+   float: left;
+   padding: 10% 0%;
+}
 
-  .game-intro h1 {
-    font-size: 40px;
-    font-family: "Georgia";
-    font-weight: 700;
-  }
+.game-intro h1 {
+  font-size: 40px;
+  font-family: "Georgia";
+  font-weight: 700;
+}
   
-  .game-intro p {
-    font-size: 20px;
-    font-family: "Georgia";
-    line-height: 2em;
-  }
+.game-intro p {
+  font-size: 20px;
+  font-family: "Georgia";
+  line-height: 2em;
+}
   
-  body button {
-    font-size: 22px;
-    font-family: "Georgia";
-    font-weight: 500;
-    background-color: #870007;
-    color: #fff;
-    padding: 20px 20px;
-    border: 0;
-    box-shadow: 0;
-    border-radius: 5px;
-    margin-bottom: 20px;
-  }
+body button {
+  font-size: 22px;
+  font-family: "Georgia";
+  font-weight: 500;
+  background-color: #870007;
+  color: #fff;
+  padding: 20px 20px;
+  border: 0;
+  box-shadow: 0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
   
-  #game-board {
-      float: left;
-      padding: 5% 5%;
-  }
+#game-board {
+  float: left;
+  padding: 5% 5%;
+}
 
-  #canvas {
-    border: 2px solid black;
-  }
+#canvas {
+  border: 2px solid black;
+}
