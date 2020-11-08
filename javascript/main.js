@@ -59,7 +59,7 @@ const main = () => {
     const buildGameOver = () => {
         buildDom(`
             <section class="game-over">
-                <h1>GAME OVER</h1>
+                <h1>Game Over</h1>
                 <button id = "game"> TRY AGAIN</button>
                 <div class= "pointer"> </div>
             </section>

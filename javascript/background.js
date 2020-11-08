@@ -1,5 +1,3 @@
-"use strict"
-
 class Background {
     constructor(canvas){
         this.canvas = canvas;
