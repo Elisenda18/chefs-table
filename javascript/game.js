@@ -3,21 +3,20 @@ class Game {
     constructor(canvas) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
-        this.player;
+        this.player = new Player(this.canvas, 0);
         this.ingredients = [];
         this.points = 0;
         this.isGameOver = false;
         this.isGameWon = false;
         //this.background = undefined;
-       // this.backgroundImg = new Image();
+        //this.backgroundImg = new Image();
+        //this.width = 600;
+        //this.height = 600;
     }
 
     startLoop() {
 
-        this.player = new Player(this.canvas, 0);
-        this.background = new Background(this.canvas);
-
-        const loop = () => {
+       const loop = () => {
             if (Math.random() > 0.99) {
                 const x = Math.random() * this.canvas.width;
                 this.ingredients.push(new Ingredient(this.canvas, x, this.selectRandomIngredient()));
@@ -59,25 +58,27 @@ class Game {
         this.player.draw();
 
         //Draw canvas Background 
-        this.background.draw();
+       // this.background.draw();
 
         // Draw Ingredients
-       /* this.ingredients.forEach((ingredient) => {
+      /* this.ingredients.forEach((ingredient) => {
             ingredient.draw();
         });
-        */
+     */
     }
-
-   /*
+    /*
     drawBackground() {
-        this.backgroundImg.src = "./chefs-table/images/gameboard2-min.png";
+        this.backgroundImg.src = "./images/gameboard2-minmin.png";
+        this.backgroundImg.addEventListener("load", () => {
+            console.log("se carga la imagen");
             this.ctx.drawImage(
                 this.backgroundImg,
                 this.x,
                 this.y,
-                600,
-                600
+                this.width,
+                this.height
             );
+        }); 
     }
     */
 
@@ -86,6 +87,7 @@ class Game {
         this.ingredients.forEach((ingredient, index) => {
             if (this.player.catchIngredients(ingredient)) {
                 this.player.addPoints();
+                //add splice
                 if(this.player.points === 12) {
                     this.isGameWon = true;
                     this.onGameWon();

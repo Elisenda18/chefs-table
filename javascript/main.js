@@ -38,13 +38,29 @@ const main = () => {
         const height = document.querySelector(".game-screen").offsetHeight;
 
         const canvasElement = document.querySelector("canvas");
+        const canvasCtx = canvasElement.getContext("2d");
 
+        //Add static background to canvas
+        const canvasBackground = new Image();
+        canvasBackground.src = "./gameboard2.png";
+
+        canvasBackground.onload = () => {
+            console.log("image load")
+            canvasCtx.drawImage(canvasBackground, 0, 0, 600, 600);
+        };
+
+        canvasBackground.onerror = () => {
+            alert("Error occurred while loading image");
+        };
+
+        //Star instance of the game + game loop
         const game = new Game(canvasElement);
         game.gameOverCallback(buildGameOver);
         game.gameWonCallback(buildGameWon);
 
         game.startLoop();
 
+        //Define player's moves
         const setPlayerDirection = (event) => {
             if (event.code === "ArrowRight") {
               game.player.setDirection(1);
@@ -53,7 +69,6 @@ const main = () => {
             }
         };
         document.addEventListener("keydown", setPlayerDirection);
-
     };
 
     const buildGameOver = () => {
