@@ -8,7 +8,7 @@ class Background {
     }
 
     draw() {
-        this.backgroundImg.src = "./images/gameboard2-min.png";
+        this.backgroundImg.src = "./images/gameboard2-minmin.png";
         this.backgroundImg.addEventListener("load", () => {
             //console.log("se carga la imagen");
             this.ctx.drawImage(
