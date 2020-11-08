@@ -28,7 +28,7 @@ const main = () => {
             </div>
 
             <div id="game-board">
-              <canvas id="canvas" width="600" height="600" border="1px solid black"></canvas>
+              <canvas class="canvas" width="600" height="600" border="1px solid black"></canvas>
             </div>
          </section> 
             
@@ -37,7 +37,7 @@ const main = () => {
         const width = document.querySelector(".game-screen").offsetWidth;
         const height = document.querySelector(".game-screen").offsetHeight;
 
-        const canvasElement = document.querySelector("canvas");
+        const canvasElement = document.querySelector(".canvas");
         const canvasCtx = canvasElement.getContext("2d");
 
         //Add static background to canvas
@@ -45,8 +45,8 @@ const main = () => {
         canvasBackground.src = "./gameboard2.png";
 
         canvasBackground.onload = () => {
-            console.log("image load")
-            canvasCtx.drawImage(canvasBackground, 0, 0, 600, 600);
+            console.log("image load");
+            canvasCtx.drawImage(canvasBackground, 0, 0);
         };
 
         canvasBackground.onerror = () => {
