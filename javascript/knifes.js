@@ -1,24 +1,20 @@
 "use strict";
 
-class Ingredient {
-    constructor(canvas, x, ingredients) {
+class Knives {
+    constructor(canvas, x) {
         this.x = x;
         this.y = 20;
         this.size = 40;
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
-        this.ingredients = ingredients;
-        this.imgSrc = ingredients.img;
-        this.name = ingredients.name;
-        this.points = ingredients.points;
-        this.speed = 1;
+        this.speed = 2;
         this.direction = 1;
 
     }
 
     draw() {
         const img = new Image();
-        img.src = this.imgSrc;
+        img.src = "./images/knife.jpg";
         this.ctx.drawImage(
             img,
             this.x,
@@ -36,3 +32,4 @@ class Ingredient {
         this.direction = direction;
     }
 }
+

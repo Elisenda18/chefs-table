@@ -28,7 +28,7 @@ const main = () => {
             </div>
 
             <div id="game-board">
-                <canvas id="canvas" width="600" height="600" border="1px solid black"></canvas>
+                <canvas id="canvas" width="600" height="800"></canvas>
             </div>
          </section> 
             
@@ -42,12 +42,12 @@ const main = () => {
 
         //Add static background to canvas
         const canvasBackground = new Image();
-        canvasBackground.src = "./gameboard2.png";
-
-        canvasBackground.onload = () => {
-            console.log("image load");
-            canvasCtx.drawImage(canvasBackground, 0, 0);
-        };
+        canvasBackground.src = "./images/gameboard2-minmin.png";
+        
+        canvasBackground.addEventListener("load", () => {
+                console.log("image load");
+                canvasCtx.drawImage(canvasBackground, 0, 0, 600, 800);
+        });  
 
         canvasBackground.onerror = () => {
             alert("Error occurred while loading image");
@@ -56,7 +56,8 @@ const main = () => {
         //Star instance of the game + game loop
         const game = new Game(canvasElement);
         game.gameOverCallback(buildGameOver);
-        game.gameWonCallback(buildGameWon);
+        //game.gameWonCallback(buildGameWon);
+        
 
         game.startLoop();
 

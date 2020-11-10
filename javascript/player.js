@@ -1,7 +1,7 @@
 "use strict";
 
 class Player {
-    constructor(canvas, points) {
+    constructor(canvas, points, lives) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.points = points;
@@ -10,6 +10,7 @@ class Player {
         this.x = 250;
         this.y = 460;
         this.size = 150;
+        this.lives = lives;
     }
 
     update() {
@@ -42,6 +43,7 @@ class Player {
     }
 
     catchIngredients(ingredient) {
+        
         const catchRight = this.x + this.size / 2 > ingredient.x - ingredient.size / 2;
         const catchLeft = this.x - this.size / 2 < ingredient.x + ingredient.size / 2;
         const catchTop = this.y + this.size / 2 > ingredient.y - ingredient.size / 2;
@@ -55,7 +57,10 @@ class Player {
     }
     
     addPoints() {
-        this.points++;
-        //falta ir contando los puntos que tiene cada ingrediente
+        this.points += 10;
+    }
+
+    loseLive() {
+        this.lives--;
     }
 }

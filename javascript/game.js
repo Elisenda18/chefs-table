@@ -4,25 +4,29 @@ class Game {
     constructor(canvas) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
-        this.player = new Player(this.canvas, 0);
+        this.player = new Player(this.canvas, 0, 3);
         this.ingredients = [];
+        this.knives = [];
         this.points = 0;
+        this.lives = 3;
         this.isGameOver = false;
-        this.isGameWon = false;
-        //this.background = undefined;
-        //this.backgroundImg = new Image();
-        //this.width = 600;
-        //this.height = 600;
     }
 
     startLoop() {
 
        const loop = () => {
-            if (Math.random() > 0.99) {
+
+            if (Math.random() > 0.95) {
                 const x = Math.random() * this.canvas.width;
-                this.ingredients.push(new Ingredient(this.canvas, x, this.selectRandomIngredient()));
+                const selectedIngredient = this.selectRandomIngredient();
+                console.log(selectedIngredient);
+                this.ingredients.push(new Ingredient(this.canvas, x, selectedIngredient));
             }
 
+            if (Math.random() > 0.98) {
+                const x = Math.random() * this.canvas.width;
+                this.knifes.push(new Knives(this.canvas, x));
+            }
 
             this.checkAllCatchIngredients();
             this.updateCanvas();
@@ -31,7 +35,7 @@ class Game {
             if(!this.isGameOver) {
                 window.requestAnimationFrame(loop);
             }
-         };
+        };
 
          window.requestAnimationFrame(loop);
     }
@@ -43,9 +47,14 @@ class Game {
 
     updateCanvas() {
         this.player.update();
+
         this.ingredients.forEach(function (ingredient) {
                 ingredient.update();
         });
+
+        this.knives.forEach(function (knife) {
+            knife.update();
+    });
     }
 
     clearCanvas() {
@@ -58,53 +67,42 @@ class Game {
         // Draw player
         this.player.draw();
 
-        //Draw canvas Background 
-       // this.background.draw();
-
-        // Draw Ingredients
-      /* this.ingredients.forEach((ingredient) => {
+        //Draw Ingredients
+       
+       this.ingredients.forEach((ingredient) => {
             ingredient.draw();
         });
-     */
+
+        // Draw Knifes
+        this.knives.forEach(function (knife) {
+            knife.draw();
+        });
     }
-    /*
-    drawBackground() {
-        this.backgroundImg.src = "./images/gameboard2-minmin.png";
-        this.backgroundImg.addEventListener("load", () => {
-            console.log("se carga la imagen");
-            this.ctx.drawImage(
-                this.backgroundImg,
-                this.x,
-                this.y,
-                this.width,
-                this.height
-            );
-        }); 
-    }
-    */
 
     checkAllCatchIngredients() {
         this.player.checkScreen();
+
+        //Check ingredients catched
         this.ingredients.forEach((ingredient, index) => {
             if (this.player.catchIngredients(ingredient)) {
                 this.player.addPoints();
-                //add splice
-                if(this.player.points === 12) {
-                    this.isGameWon = true;
-                    this.onGameWon();
-                } else {
-                    this.isGameOver = true;
-                    this.onGameOver();
-                };
+                this.ingredient.splice(index, 1);
+            }
+        });
+
+        //Check knifes collided
+        this.knives.forEach((knife, index) => {
+            if (this.player.catchIngredients(knife)) {
+                this.player.loseLive();
+                this.knives.splice(index, 1);
+            } if (this.player.lives === 0) {
+                this.isGameOver= true;
+                this.isGameOverCallback();
             }
         });
     }
 
     gameOverCallback(callback) {
-        this.onGameOver = callback;
-    }
-    
-    gameWonCallback(callback) {
-        this.onWonOver = callback;
-    }
+        this.isGameOver = callback;
+    } 
 }
